@@ -29,20 +29,20 @@ def control():
         temp_data = temperature.json()
 
         return {
-            "result" : temp_data["current"]["temp_c"]
+            "result":temp_data["current"]["temp_c"]
         }
 
     elif stock_name != None:
         stock = yf.Ticker(stock_name)
         price = stock.info["currentPrice"]
         return {
-            "result" : price
+            "result":price
         }
 
     elif values != None:
         result = eval(values)
         return {
-            "result" : result
+            "result":result
         }
     else:
         return {}
