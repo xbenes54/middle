@@ -7,6 +7,7 @@ weather_api_key = "c880d86a7b7f406f91b173324242504"
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def hello_world():
     return "<p> Hello World </p>"
@@ -24,7 +25,7 @@ def airport_temperature():
     temp_data = temperature.json()
     print(info)
     return {
-        "temp" : temp_data["current"]["temp_c"]
+        "result" : temp_data["current"]["temp_c"]
     }
 
 @app.route("/queryStockPrice")
@@ -33,7 +34,7 @@ def query_stock_price():
     stock = yf.Ticker(stock_name)
     price = stock.info["currentPrice"]
     return {
-        "price" : price
+        "result" : price
     }
 
 @app.route("/queryEval")
@@ -43,5 +44,7 @@ def query_eval():
     return {
         "result" : result
     }
+
+
 
 
