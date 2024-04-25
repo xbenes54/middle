@@ -39,7 +39,7 @@ def control():
     elif values != None:
         result = eval(values)
         return {
-            "result" : result
+            "value" : result
         }
     else:
         return {}
