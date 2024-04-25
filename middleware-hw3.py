@@ -25,21 +25,15 @@ def control():
         temperature = requests.get(f"http://api.weatherapi.com/v1/current.json?q={longitude},{latitude}&key={weather_api_key}")
         temp_data = temperature.json()
         print(info)
-        return {
-            "result" : temp_data["current"]["temp_c"]
-        }
+        return f"<result> {temp_data["current"]["temp_c"]} </result>"
 
     elif stock_name != None:
         stock = yf.Ticker(stock_name)
         price = stock.info["currentPrice"]
-        return {
-            "result" : price
-        }
+        return f"<result> {price} </result>"
 
     elif values != None:
         result = eval(values)
-        return {
-            "result" : result
-        }
+        return f"<result> {result} </result>"
     else:
         return {}
