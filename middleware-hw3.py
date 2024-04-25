@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import yfinance as yf
 import requests
 
@@ -25,15 +25,21 @@ def control():
         temperature = requests.get(f"http://api.weatherapi.com/v1/current.json?q={longitude},{latitude}&key={weather_api_key}")
         temp_data = temperature.json()
         print(info)
-        return f"<result> {temp_data["current"]["temp_c"]} </result>"
+        return {
+            "result" : temp_data["current"]["temp_c"]
+        }
 
     elif stock_name != None:
         stock = yf.Ticker(stock_name)
         price = stock.info["currentPrice"]
-        return f"<result> {price} </result>"
+        return {
+            "result" : price
+        }
 
     elif values != None:
         result = eval(values)
-        return f"<result> {result} </result>"
+        return {
+            "result" : result
+        }
     else:
         return {}
