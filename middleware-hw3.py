@@ -16,8 +16,8 @@ def control():
 
 
     if airport != None:
-	if len(airport) > 3:
-        	return {}
+        if len(airport) > 3:
+            return {}
         
         info = requests.get(f"https://www.airport-data.com/api/ap_info.json?iata={airport}")
 
@@ -27,22 +27,22 @@ def control():
 
         temperature = requests.get(f"http://api.weatherapi.com/v1/current.json?q={latitude},{longitude}&key={weather_api_key}")
         temp_data = temperature.json()
-        print(info)
+
         return {
-            "airport_temp" : temp_data["current"]["temp_c"]
+            "result" : temp_data["current"]["temp_c"]
         }
 
     elif stock_name != None:
         stock = yf.Ticker(stock_name)
         price = stock.info["currentPrice"]
         return {
-            "stock" : price
+            "result" : price
         }
 
     elif values != None:
         result = eval(values)
         return {
-            "value" : result
+            "result" : result
         }
     else:
         return {}
