@@ -35,14 +35,14 @@ def control():
     elif stock_name != None:
         stock = yf.Ticker(stock_name)
         price = stock.info["currentPrice"]
-        return {
-            "result":price
-        }
+
+        result = jsonify(result=price)
+        return result
 
     elif values != None:
         result = eval(values)
-        return {
-            "result":result
-        }
+
+        result = jsonify(result=result)
+        return result
     else:
         return {}
