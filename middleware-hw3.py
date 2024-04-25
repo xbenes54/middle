@@ -14,10 +14,9 @@ def control():
     stock_name = request.args.get("queryStockPrice")
     values = request.args.get('queryEval')
 
-
-    if airport != None:
+    if airport is not None:
         if len(airport) > 3:
-            return {}
+            return jsonify({})
         
         info = requests.get(f"https://www.airport-data.com/api/ap_info.json?iata={airport}")
 
@@ -25,24 +24,20 @@ def control():
         longitude = data["longitude"]
         latitude = data["latitude"]
 
-        temperature = requests.get(f"http://api.weatherapi.com/v1/current.json?q={latitude}%2C{longitude}&key={weather_api_key}")
+        temperature = requests.get(f"http://api.weatherapi.com/v1/current.json?q={latitude},{longitude}&key={weather_api_key}")
         temp_data = temperature.json()
 
-        result = jsonify(result=temp_data['current']['temp_c'])
+        return jsonify(result=temp_data['current']['temp_c'])
 
-        return result
-
-    elif stock_name != None:
+    elif stock_name is not None:
         stock = yf.Ticker(stock_name)
         price = stock.info["currentPrice"]
 
-        result = jsonify(result=price)
-        return result
+        return jsonify(result=price)
 
-    elif values != None:
+    elif values is not None:
         result = eval(values)
 
-        result = jsonify(result=result)
-        return result
+        return jsonify(result=result)
     else:
-        return {}
+        return jsonify({})
