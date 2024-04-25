@@ -25,7 +25,7 @@ def control():
         longitude = data["longitude"]
         latitude = data["latitude"]
 
-        temperature = requests.get(f"http://api.weatherapi.com/v1/current.json?q={latitude},{longitude}&key={weather_api_key}")
+        temperature = requests.get(f"http://api.weatherapi.com/v1/current.json?q={latitude}%2C{longitude}&key={weather_api_key}")
         temp_data = temperature.json()
 
         result = jsonify(result=temp_data['current']['temp_c'])
