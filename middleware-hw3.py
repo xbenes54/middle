@@ -17,7 +17,7 @@ def control():
 
     if airport != None:
 	if len(airport) > 3:
-            return {}
+        	return {}
         
         info = requests.get(f"https://www.airport-data.com/api/ap_info.json?iata={airport}")
 
