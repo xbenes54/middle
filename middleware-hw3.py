@@ -26,7 +26,7 @@ def control():
         temp_data = temperature.json()
         print(info)
         return {
-            "result" : temp_data["current"]["temp_c"]
+            "airport_temp" : temp_data["current"]["temp_c"]
         }
 
     elif stock_name != None:
