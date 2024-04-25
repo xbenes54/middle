@@ -33,7 +33,7 @@ def control():
         stock = yf.Ticker(stock_name)
         price = stock.info["currentPrice"]
         return {
-            "result" : price
+            "stock" : price
         }
 
     elif values != None:
