@@ -41,3 +41,5 @@ def control():
         return {
             "result" : result
         }
+    else:
+        return {}
