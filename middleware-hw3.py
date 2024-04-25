@@ -28,9 +28,9 @@ def control():
         temperature = requests.get(f"http://api.weatherapi.com/v1/current.json?q={latitude},{longitude}&key={weather_api_key}")
         temp_data = temperature.json()
 
-        return {
-            "result":temp_data["current"]["temp_c"]
-        }
+        result = jsonify(result=temp_data['current']['temp_c'])
+
+        return result
 
     elif stock_name != None:
         stock = yf.Ticker(stock_name)
